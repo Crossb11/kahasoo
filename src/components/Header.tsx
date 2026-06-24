@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { CartDrawer } from "./CartDrawer";
 
@@ -11,6 +11,8 @@ const navLinks = [
   { label: "À Propos", href: "#apropos" },
   { label: "Contact", href: "#contact" },
 ];
+
+const aboutPageLink = { label: "À Propos", href: "/a-propos" };
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
