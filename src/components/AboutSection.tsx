@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Sparkles, Flag, Scale } from "lucide-react";
+import { Sparkles, Flag, Scale, ArrowRight } from "lucide-react";
 
 export const AboutSection = () => {
   const strengths = [
@@ -18,11 +19,18 @@ export const AboutSection = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">À Propos d'Asya</h2>
-          <p className="text-muted-foreground font-body max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground font-body max-w-2xl mx-auto leading-relaxed mb-6">
             Passionnée de cosplay et créatrice derrière KAHASOO, Asya conçoit des costumes sur mesure
-            qui allient qualité, authenticité et prix juste. Influenceuse iA et cosplayeuse de A à Z,
+            qui allient qualité, authenticité et prix juste. Influenceuse IA et cosplayeuse de A à Z,
             elle met son expertise au service de votre transformation.
           </p>
+          <Link
+            to="/a-propos"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:bg-primary/90 transition-colors"
+          >
+            Lire l'histoire complète
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
