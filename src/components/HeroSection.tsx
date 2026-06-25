@@ -47,23 +47,34 @@ export const HeroSection = () => {
           </div>
         </motion.div>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-body text-xs md:text-sm tracking-[0.4em] uppercase mb-4 text-foreground/70"
+          className="flex items-center justify-center gap-4 mb-5"
         >
-          ✦ Cosplay Haut de Gamme • 100% Français ✦
-        </motion.p>
+          <span className="h-px w-12 md:w-20 bg-gold-gradient" />
+          <p className="font-body text-[10px] md:text-xs tracking-[0.4em] uppercase text-gold whitespace-nowrap">
+            Haute Couture Cosplay · 100% Français
+          </p>
+          <span className="h-px w-12 md:w-20 bg-gold-gradient" />
+        </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-display text-6xl md:text-8xl font-bold tracking-wider mb-6 text-lilac-gradient"
+          className="font-display text-6xl md:text-8xl font-bold tracking-wider mb-3 text-lilac-gradient"
         >
           KAHASOO
         </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="gold-divider w-40 mx-auto mb-6"
+        />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}

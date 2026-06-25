@@ -90,6 +90,44 @@
     box-shadow: 0 20px 60px -20px hsl(280 60% 70% / 0.5);
   }
 
+  /* Premium gold accents */
+  .text-gold {
+    color: hsl(42 55% 52%);
+  }
+  .bg-gold-gradient {
+    background: linear-gradient(90deg,
+      transparent 0%,
+      hsl(42 60% 60% / 0.15) 15%,
+      hsl(42 70% 55%) 50%,
+      hsl(42 60% 60% / 0.15) 85%,
+      transparent 100%);
+  }
+  .border-gold {
+    border-color: hsl(42 55% 55% / 0.55);
+  }
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent,
+      hsl(42 55% 55% / 0.1) 10%,
+      hsl(42 70% 55% / 0.8) 50%,
+      hsl(42 55% 55% / 0.1) 90%,
+      transparent);
+  }
+  .gold-divider-v {
+    width: 1px;
+    background: linear-gradient(180deg,
+      transparent,
+      hsl(42 70% 55% / 0.7) 50%,
+      transparent);
+  }
+  .text-gold-gradient {
+    background: linear-gradient(135deg, hsl(42 75% 60%), hsl(38 80% 50%), hsl(42 75% 60%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-15px); }
