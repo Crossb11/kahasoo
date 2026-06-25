@@ -33,7 +33,8 @@ export const Header = () => {
   }, [isHome, location.hash]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md">
+      <div className="absolute bottom-0 left-0 right-0 gold-divider" />
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <Link to="/" className="flex items-center gap-2 group">
           <img

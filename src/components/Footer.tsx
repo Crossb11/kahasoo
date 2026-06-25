@@ -15,13 +15,14 @@ const XIcon = () => (
 
 export const Footer = () => {
   return (
-    <footer id="contact" className="bg-foreground text-primary-foreground py-16">
+    <footer id="contact" className="relative bg-foreground text-primary-foreground py-16">
+      <div className="absolute top-0 left-0 right-0 gold-divider" />
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src={logoAsset.url} alt="KAHASOO" className="h-12 w-12 object-contain invert opacity-90 animate-float" />
-              <h3 className="font-display text-2xl font-bold">KAHASOO</h3>
+              <img src={logoAsset.url} alt="KAHASOO" className="h-14 w-14 object-contain animate-float" />
+              <h3 className="font-display text-2xl font-bold text-gold-gradient">KAHASOO</h3>
             </div>
             <p className="text-primary-foreground/60 text-sm leading-relaxed">
               Cosplay haut de gamme, fabriqué en France.
@@ -79,9 +80,10 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 mt-12 pt-8 text-center">
-          <p className="text-primary-foreground/40 text-xs">
-            © {new Date().getFullYear()} KAHASOO. Tous droits réservés.
+        <div className="mt-12 pt-8 text-center relative">
+          <div className="gold-divider absolute top-0 left-1/2 -translate-x-1/2 w-64" />
+          <p className="text-primary-foreground/40 text-xs tracking-[0.2em] uppercase">
+            © {new Date().getFullYear()} <span className="text-gold">Kahasoo</span> · Tous droits réservés
           </p>
         </div>
       </div>
