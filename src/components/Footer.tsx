@@ -1,4 +1,5 @@
 import { Instagram, Mail } from "lucide-react";
+import logoAsset from "@/assets/kahasoo-logo.asset.json";
 
 const TikTokIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
@@ -18,7 +19,10 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <h3 className="font-display text-2xl font-bold mb-4">KAHASOO</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <img src={logoAsset.url} alt="KAHASOO" className="h-12 w-12 object-contain invert opacity-90 animate-float" />
+              <h3 className="font-display text-2xl font-bold">KAHASOO</h3>
+            </div>
             <p className="text-primary-foreground/60 text-sm leading-relaxed">
               Cosplay haut de gamme, fabriqué en France.
               <br />
