@@ -18,9 +18,9 @@ export const AboutSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">À Propos d'Asya</h2>
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">À Propos de Kahasoo</h2>
           <p className="text-muted-foreground font-body max-w-2xl mx-auto leading-relaxed mb-6">
-            Passionnée de cosplay et créatrice derrière KAHASOO, Asya conçoit des costumes sur mesure
+            Passionnée de cosplay et créatrice derrière KAHASOO, Kahasoo conçoit des costumes sur mesure
             qui allient qualité, authenticité et prix juste. Influenceuse IA et cosplayeuse de A à Z,
             elle met son expertise au service de votre transformation.
           </p>

@@ -27,7 +27,7 @@ export const Footer = () => {
             <p className="text-primary-foreground/60 text-sm leading-relaxed">
               Cosplay haut de gamme, fabriqué en France.
               <br />
-              Par Asya, pour les passionnés.
+              Par Kahasoo, pour les passionnés.
             </p>
           </div>
 
