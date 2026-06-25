@@ -132,10 +132,10 @@ const About = () => {
               L'histoire de KAHASOO
             </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              À Propos d'Asya
+              À Propos de Kahasoo
             </h1>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Découvrez le parcours d'Asya, de la passion du cosplay à la création de KAHASOO.
+              Découvrez le parcours de Kahasoo, de la passion du cosplay à la création de KAHASOO.
             </p>
           </motion.div>
 

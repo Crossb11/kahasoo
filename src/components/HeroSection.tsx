@@ -118,7 +118,7 @@ export const HeroSection = () => {
               <span>✦ Qualité Haut de Gamme</span>
               <span>✦ Livraison France & International</span>
               <span>✦ Paiement Sécurisé PayPal</span>
-              <span>✦ Par Asya</span>
+              <span>✦ Par Kahasoo</span>
             </div>
           ))}
         </div>
