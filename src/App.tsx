@@ -20,7 +20,9 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/a-propos" element={<About />} />
+        <Route path="/galerie" element={<Gallery />} />
         <Route path="/product/:handle" element={<ProductDetail />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
