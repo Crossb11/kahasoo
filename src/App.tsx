@@ -6,7 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useCartSync } from "@/hooks/useCartSync";
 import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
+import Gallery from "./pages/Gallery.tsx";
 import ProductDetail from "./pages/ProductDetail.tsx";
+
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -18,7 +20,9 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/a-propos" element={<About />} />
+        <Route path="/galerie" element={<Gallery />} />
         <Route path="/product/:handle" element={<ProductDetail />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

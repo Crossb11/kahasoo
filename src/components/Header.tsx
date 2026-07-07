@@ -68,11 +68,18 @@ export const Header = () => {
             )
           )}
           <Link
+            to="/galerie"
+            className="text-sm font-body font-medium tracking-wide text-foreground/70 hover:text-foreground transition-colors"
+          >
+            Galerie
+          </Link>
+          <Link
             to="/a-propos"
             className="text-sm font-body font-medium tracking-wide text-foreground/70 hover:text-foreground transition-colors"
           >
             À Propos
           </Link>
+
         </nav>
 
         <div className="flex items-center gap-3">
@@ -111,12 +118,20 @@ export const Header = () => {
               )
             )}
             <Link
+              to="/galerie"
+              onClick={() => setIsOpen(false)}
+              className="text-left text-sm font-body font-medium py-2 text-foreground/70 hover:text-foreground transition-colors"
+            >
+              Galerie
+            </Link>
+            <Link
               to="/a-propos"
               onClick={() => setIsOpen(false)}
               className="text-left text-sm font-body font-medium py-2 text-foreground/70 hover:text-foreground transition-colors"
             >
               À Propos
             </Link>
+
           </nav>
         </div>
       )}
