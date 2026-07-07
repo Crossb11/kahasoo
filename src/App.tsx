@@ -6,7 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useCartSync } from "@/hooks/useCartSync";
 import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
+import Gallery from "./pages/Gallery.tsx";
 import ProductDetail from "./pages/ProductDetail.tsx";
+
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
