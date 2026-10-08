@@ -1,4 +1,5 @@
 import { toast } from "sonner";
+import { getProductPhotos } from "./productPhotography";
 
 const SHOPIFY_API_VERSION = '2025-07';
 const SHOPIFY_STORE_PERMANENT_DOMAIN = 'kahasoo-creations-ute4k.myshopify.com';
@@ -175,12 +176,14 @@ const PRODUCT_BY_HANDLE_QUERY = `
 
 export async function fetchProducts(first = 20, query?: string): Promise<ShopifyProduct[]> {
   const data = await storefrontApiRequest(STOREFRONT_QUERY, { first, query });
-  return data?.data?.products?.edges || [];
+  const products: ShopifyProduct[] = data?.data?.products?.edges || [];
+  return products.map(({ node }) => ({ node: { ...node, images: { edges: getProductPhotos(node.id) } } }));
 }
 
 export async function fetchProductByHandle(handle: string) {
   const data = await storefrontApiRequest(PRODUCT_BY_HANDLE_QUERY, { handle });
-  return data?.data?.productByHandle || null;
+  const product = data?.data?.productByHandle;
+  return product ? { ...product, images: { edges: getProductPhotos(product.id) } } : null;
 }
 
 // Cart mutations

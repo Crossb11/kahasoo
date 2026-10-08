@@ -75,7 +75,12 @@ export default function ProductDetail() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              {images[selectedImage]?.node && (
+               {images.length === 0 && (
+                 <div className="aspect-square rounded-lg bg-muted flex items-center justify-center text-muted-foreground mb-4">
+                   Photo à venir
+                 </div>
+               )}
+               {images[selectedImage]?.node && (
                 <div className="aspect-square rounded-lg overflow-hidden bg-muted mb-4">
                   <img
                     src={images[selectedImage].node.url}
