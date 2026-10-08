@@ -13,16 +13,42 @@ import img6 from "@/assets/gallery/2026-06-26_at_12.21.18_5.jpeg.asset.json";
 import img7 from "@/assets/gallery/2026-06-26_at_12.21.18.jpeg.asset.json";
 import img8 from "@/assets/gallery/2026-06-26_at_12.21.22_2.jpeg.asset.json";
 import img9 from "@/assets/gallery/2026-06-26_at_12.21.22_3.jpeg.asset.json";
+import sakura from "@/assets/photos/sakura-portrait.webp.asset.json";
+import sakuraProfile from "@/assets/photos/sakura-profil.webp.asset.json";
+import hinata from "@/assets/photos/hinata-portrait.webp.asset.json";
+import hinataByakugan from "@/assets/photos/hinata-byakugan.webp.asset.json";
+import hinataAction from "@/assets/photos/hinata-action.webp.asset.json";
+import raiponce from "@/assets/photos/raiponce-portrait.webp.asset.json";
+import raiponceCostume from "@/assets/photos/raiponce-costume.webp.asset.json";
+import sasukeSakura from "@/assets/photos/sasuke-sakura.jpeg.asset.json";
+import stocking from "@/assets/photos/stocking-pose.jpeg.asset.json";
+import hinataDetail from "@/assets/photos/hinata-detail.jpeg.asset.json";
+import rock from "@/assets/photos/creation-rock.jpeg.asset.json";
+import pois from "@/assets/photos/creation-pois.jpeg.asset.json";
+import lilas from "@/assets/photos/creation-lilas.jpeg.asset.json";
 
 type Piece = {
   src: string;
   title: string;
   serie: string;
-  category: "Naruto" | "Anime" | "Événementiel";
+  category: "Naruto" | "Anime" | "Événementiel" | "Fantasy";
   span: string;
 };
 
 const pieces: Piece[] = [
+  { src: sakura.url, title: "Sakura Haruno", serie: "Naruto Shippuden", category: "Naruto", span: "md:row-span-2" },
+  { src: hinata.url, title: "Hinata Hyuga", serie: "Naruto Shippuden", category: "Naruto", span: "md:row-span-2" },
+  { src: raiponce.url, title: "Raiponce", serie: "Disney", category: "Fantasy", span: "md:row-span-2" },
+  { src: hinataByakugan.url, title: "Hinata — Byakugan", serie: "Naruto Shippuden", category: "Naruto", span: "md:col-span-2" },
+  { src: sakuraProfile.url, title: "Sakura — Profil", serie: "Naruto Shippuden", category: "Naruto", span: "md:row-span-2" },
+  { src: raiponceCostume.url, title: "Raiponce — Robe", serie: "Disney", category: "Fantasy", span: "md:col-span-2" },
+  { src: hinataAction.url, title: "Hinata — En mouvement", serie: "Naruto Shippuden", category: "Naruto", span: "md:row-span-2" },
+  { src: sasukeSakura.url, title: "Sasuke & Sakura", serie: "Naruto Shippuden", category: "Naruto", span: "md:row-span-2" },
+  { src: stocking.url, title: "Stocking — Pose", serie: "Panty & Stocking", category: "Anime", span: "md:row-span-2" },
+  { src: hinataDetail.url, title: "Hinata — Détails", serie: "Naruto Shippuden", category: "Naruto", span: "md:row-span-2" },
+  { src: rock.url, title: "Création — Rock", serie: "KAHASOO", category: "Anime", span: "md:row-span-2" },
+  { src: pois.url, title: "Création — Pois", serie: "KAHASOO", category: "Anime", span: "md:row-span-2" },
+  { src: lilas.url, title: "Création — Lilas", serie: "KAHASOO", category: "Fantasy", span: "md:row-span-2" },
   { src: img1.url, title: "Sasuke & Sakura", serie: "Naruto Shippuden", category: "Naruto", span: "md:col-span-2 md:row-span-2" },
   { src: img5.url, title: "Ino Yamanaka", serie: "Naruto", category: "Naruto", span: "md:row-span-2" },
   { src: img3.url, title: "Stocking", serie: "Panty & Stocking", category: "Anime", span: "md:col-span-2" },
@@ -34,7 +60,7 @@ const pieces: Piece[] = [
   { src: img9.url, title: "Sasuke — Ermite", serie: "Boruto", category: "Naruto", span: "" },
 ];
 
-const filters = ["Tout", "Naruto", "Anime", "Événementiel"] as const;
+const filters = ["Tout", "Naruto", "Anime", "Fantasy", "Événementiel"] as const;
 
 const Gallery = () => {
   const [active, setActive] = useState<(typeof filters)[number]>("Tout");

@@ -124,7 +124,7 @@ export const ProductsSection = () => {
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                            —
+                             <span className="text-sm font-body">Photo à venir</span>
                           </div>
                         )}
                       </div>
