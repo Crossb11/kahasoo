@@ -35,6 +35,8 @@
     --ring: 280 60% 93%;
 
     --radius: 0.5rem;
+    --gallery-gold: 42 55% 65%;
+    --gallery-caption: linear-gradient(to top, hsl(var(--foreground) / 0.9), hsl(var(--foreground) / 0));
 
     --lilac: 280 60% 93%;
     --lilac-foreground: 0 0% 8%;
@@ -161,4 +163,8 @@
   .hover-lift {
     @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-lilac;
   }
+}
+
+@layer utilities {
+  .bg-gallery-caption { background: var(--gallery-caption); }
 }

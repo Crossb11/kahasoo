@@ -100,14 +100,14 @@ const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
       {!embedded && <Header />}
 
       {/* Hero */}
-      <section className={`relative ${embedded ? "pt-20" : "pt-32"} pb-16 overflow-hidden`}>
+      <section className={`relative ${embedded ? "pt-10" : "pt-24"} pb-6 overflow-hidden`}>
         <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent pointer-events-none" />
         <div className="container mx-auto px-4 text-center relative">
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto h-px w-24 bg-gold-gradient mb-6 origin-center"
+            className="mx-auto h-px w-24 bg-gold-gradient mb-4 origin-center"
           />
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -129,7 +129,7 @@ const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.8 }}
-            className="mt-6 max-w-2xl mx-auto text-foreground/70 font-body leading-relaxed"
+            className="mt-3 max-w-2xl mx-auto text-foreground/70 font-body leading-relaxed"
           >
             Chaque pièce est confectionnée à la main en France — matières nobles, coupes précises,
             finitions couture. Une sélection de costumes livrés à mes clients cosplayeurs.
@@ -140,14 +140,14 @@ const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="mt-10 flex flex-wrap justify-center gap-2"
+            className="mt-5 flex flex-wrap justify-center gap-2"
           >
             {filters.map((f) => (
                <Button
                 key={f}
                  variant="ghost"
                  aria-pressed={active === f}
-                onClick={() => setActive(f)}
+                onClick={() => { setLightbox(null); setActive(f); }}
                 className={`relative px-5 py-2 rounded-full text-xs md:text-sm font-body tracking-wide transition-all ${
                   active === f
                     ? "text-background"
@@ -169,60 +169,42 @@ const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
       </section>
 
       {/* Masonry Grid */}
-      <section className="container mx-auto px-4 pb-24">
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[220px] md:auto-rows-[260px] gap-3 md:gap-4"
-        >
-          <AnimatePresence mode="popLayout">
-            {visible.map((p, i) => (
-              <motion.button
-                key={p.src}
-                layout
-                 initial={reduceMotion ? false : { opacity: 0, y: 30, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{
-                  duration: 0.6,
-                  delay: (i % 6) * 0.05,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                whileHover={{ y: -4 }}
+      <section className="mx-auto max-w-[1600px] px-2 pb-10 md:px-5">
+        <div className="columns-2 gap-2 md:columns-3 md:gap-3 xl:columns-4">
+          {visible.map((p, i) => (
+            <motion.div
+              key={p.src}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: (i % 4) * 0.04 }}
+              className="mb-2 break-inside-avoid md:mb-3"
+            >
+              <Button
+                variant="ghost"
                 onClick={() => setLightbox(i)}
-                 aria-label={`Voir ${p.title}`}
-                 className={`group relative overflow-hidden rounded-lg bg-muted ${p.span}`}
+                aria-label={`Voir ${p.title}`}
+                className="group relative block h-auto w-full overflow-hidden rounded-md p-0 text-left whitespace-normal focus-visible:ring-inset"
               >
-                {/* Gold border on hover */}
-                <span className="pointer-events-none absolute inset-0 z-20 rounded-lg ring-1 ring-transparent group-hover:ring-1 group-hover:ring-[hsl(42_55%_52%/0.6)] transition-all duration-500" />
-                {/* Corner accents */}
-                <span className="pointer-events-none absolute top-2 left-2 h-3 w-3 border-t border-l border-[hsl(42_55%_52%/0.7)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
-                <span className="pointer-events-none absolute bottom-2 right-2 h-3 w-3 border-b border-r border-[hsl(42_55%_52%/0.7)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
-
                 <img
                   src={p.src}
                   alt={p.title}
-                   loading={i < 4 ? "eager" : "lazy"}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                  loading={i < 6 ? "eager" : "lazy"}
+                  className="block h-auto w-full transition-transform duration-700 motion-safe:group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-left translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <p className="text-[10px] tracking-[0.3em] uppercase text-gold mb-1">
-                    {p.category}
-                  </p>
-                  <h3 className="font-display text-white text-lg md:text-xl font-semibold">
-                    {p.title}
-                  </h3>
-                  <p className="text-white/70 text-xs font-body mt-0.5">{p.serie}</p>
-                  <span className="mt-2 inline-block h-px w-8 bg-gold-gradient origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                <span className="pointer-events-none absolute inset-0 rounded-md ring-1 ring-inset ring-border/20 transition-colors group-hover:ring-gallery-gold/70" />
+                <div className="absolute inset-x-0 bottom-0 bg-gallery-caption px-3 pb-3 pt-12 md:px-4 md:pb-4">
+                  <p className="mb-1 text-[10px] uppercase text-gallery-gold">{p.category}</p>
+                  <h3 className="font-display text-sm font-semibold leading-snug text-primary-foreground md:text-lg">{p.title}</h3>
+                  <p className="mt-0.5 hidden text-xs font-body text-primary-foreground/75 sm:block">{p.serie}</p>
                 </div>
-              </motion.button>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+              </Button>
+            </motion.div>
+          ))}
+        </div>
 
         {/* CTA */}
-        <div className="mt-20 text-center">
-          <div className="mx-auto gold-divider w-24 mb-8" />
+        <div className="mt-10 text-center">
+          <div className="mx-auto gold-divider w-24 mb-5" />
           <h2 className="font-display text-2xl md:text-4xl font-bold mb-4">
             Une idée en tête ?
           </h2>

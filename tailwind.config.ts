@@ -18,6 +18,7 @@ export default {
     },
     extend: {
       colors: {
+        "gallery-gold": "hsl(var(--gallery-gold))",
         lilac: {
           DEFAULT: "hsl(var(--lilac))",
           foreground: "hsl(var(--lilac-foreground))",
