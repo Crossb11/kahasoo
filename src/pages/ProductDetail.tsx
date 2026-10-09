@@ -108,9 +108,6 @@ export default function ProductDetail() {
 
             <div>
               <h1 className="font-display text-3xl md:text-4xl font-bold mb-4">{product.title}</h1>
-              <p className="text-2xl font-bold mb-6">
-                {variant ? `${parseFloat(variant.price.amount).toFixed(2)} ${variant.price.currencyCode}` : ""}
-              </p>
 
               {product.options && product.options.length > 0 && product.options[0].name !== "Title" && (
                 <div className="mb-6">

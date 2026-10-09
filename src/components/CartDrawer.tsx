@@ -10,7 +10,6 @@ export const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { items, isLoading, isSyncing, updateQuantity, removeItem, getCheckoutUrl, syncCart } = useCartStore();
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + (parseFloat(item.price.amount) * item.quantity), 0);
 
   useEffect(() => { if (isOpen) syncCart(); }, [isOpen, syncCart]);
 
@@ -63,7 +62,6 @@ export const CartDrawer = () => {
                       <div className="flex-1 min-w-0">
                         <h4 className="font-medium truncate">{item.product.node.title}</h4>
                         <p className="text-sm text-muted-foreground">{item.selectedOptions.map(o => o.value).join(' • ')}</p>
-                        <p className="font-semibold">{parseFloat(item.price.amount).toFixed(2)} {item.price.currencyCode}</p>
                       </div>
                       <div className="flex flex-col items-end gap-2 flex-shrink-0">
                         <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => removeItem(item.variantId)}>
@@ -84,10 +82,6 @@ export const CartDrawer = () => {
                 </div>
               </div>
               <div className="flex-shrink-0 space-y-4 pt-4 border-t">
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold font-display">Total</span>
-                  <span className="text-xl font-bold">{totalPrice.toFixed(2)} {items[0]?.price.currencyCode}</span>
-                </div>
                 <Button onClick={handleCheckout} className="w-full" size="lg" disabled={items.length === 0 || isLoading || isSyncing}>
                   {isLoading || isSyncing ? <Loader2 className="w-4 h-4 animate-spin" /> : <><ExternalLink className="w-4 h-4 mr-2" />Passer commande</>}
                 </Button>

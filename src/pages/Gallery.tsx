@@ -1,8 +1,9 @@
 import { useEffect, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 
 import img1 from "@/assets/gallery/2026-05-08_at_18.35.32.jpeg.asset.json";
 import img2 from "@/assets/gallery/2026-05-08_at_18.35.33_2.jpeg.asset.json";
@@ -62,7 +63,8 @@ const pieces: Piece[] = [
 
 const filters = ["Tout", "Naruto", "Anime", "Fantasy", "Événementiel"] as const;
 
-const Gallery = () => {
+const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
+  const reduceMotion = useReducedMotion();
   const [active, setActive] = useState<(typeof filters)[number]>("Tout");
   const [lightbox, setLightbox] = useState<number | null>(null);
 
@@ -95,10 +97,10 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      {!embedded && <Header />}
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
+      <section className={`relative ${embedded ? "pt-20" : "pt-32"} pb-16 overflow-hidden`}>
         <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent pointer-events-none" />
         <div className="container mx-auto px-4 text-center relative">
           <motion.div
@@ -121,7 +123,7 @@ const Gallery = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
           >
-            <span className="text-lilac-gradient">Galerie</span> de Créations
+            <span className="text-lilac-gradient">Créations</span> KAHASOO
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -141,8 +143,10 @@ const Gallery = () => {
             className="mt-10 flex flex-wrap justify-center gap-2"
           >
             {filters.map((f) => (
-              <button
+               <Button
                 key={f}
+                 variant="ghost"
+                 aria-pressed={active === f}
                 onClick={() => setActive(f)}
                 className={`relative px-5 py-2 rounded-full text-xs md:text-sm font-body tracking-wide transition-all ${
                   active === f
@@ -158,7 +162,7 @@ const Gallery = () => {
                   />
                 )}
                 <span className="relative z-10">{f}</span>
-              </button>
+               </Button>
             ))}
           </motion.div>
         </div>
@@ -175,7 +179,7 @@ const Gallery = () => {
               <motion.button
                 key={p.src}
                 layout
-                initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                 initial={reduceMotion ? false : { opacity: 0, y: 30, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{
@@ -185,7 +189,8 @@ const Gallery = () => {
                 }}
                 whileHover={{ y: -4 }}
                 onClick={() => setLightbox(i)}
-                className={`group relative overflow-hidden rounded-lg bg-muted ${p.span}`}
+                 aria-label={`Voir ${p.title}`}
+                 className={`group relative overflow-hidden rounded-lg bg-muted ${p.span}`}
               >
                 {/* Gold border on hover */}
                 <span className="pointer-events-none absolute inset-0 z-20 rounded-lg ring-1 ring-transparent group-hover:ring-1 group-hover:ring-[hsl(42_55%_52%/0.6)] transition-all duration-500" />
@@ -196,7 +201,7 @@ const Gallery = () => {
                 <img
                   src={p.src}
                   alt={p.title}
-                  loading="lazy"
+                   loading={i < 4 ? "eager" : "lazy"}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
@@ -299,7 +304,7 @@ const Gallery = () => {
         )}
       </AnimatePresence>
 
-      <Footer />
+       {!embedded && <Footer />}
     </div>
   );
 };
