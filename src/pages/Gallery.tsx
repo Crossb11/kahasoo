@@ -32,7 +32,7 @@ type Piece = {
   src: string;
   title: string;
   serie: string;
-  category: "Naruto" | "Anime" | "Événementiel" | "Fantasy";
+   category: "Naruto" | "Boruto" | "Anime" | "Événementiel" | "Fantasy";
   span: string;
 };
 
@@ -47,7 +47,7 @@ const pieces: Piece[] = [
   { src: sasukeSakura.url, title: "Sasuke & Sakura", serie: "Naruto Shippuden", category: "Naruto", span: "md:row-span-2" },
   { src: stocking.url, title: "Stocking — Pose", serie: "Panty & Stocking", category: "Anime", span: "md:row-span-2" },
   { src: hinataDetail.url, title: "Hinata — Détails", serie: "Naruto Shippuden", category: "Naruto", span: "md:row-span-2" },
-  { src: rock.url, title: "Création — Rock", serie: "KAHASOO", category: "Anime", span: "md:row-span-2" },
+  { src: rock.url, title: "Himawari Uzumaki", serie: "Boruto: Two Blue Vortex", category: "Boruto", span: "md:row-span-2" },
   { src: pois.url, title: "Création — Pois", serie: "KAHASOO", category: "Anime", span: "md:row-span-2" },
   { src: lilas.url, title: "Création — Lilas", serie: "KAHASOO", category: "Fantasy", span: "md:row-span-2" },
   { src: img1.url, title: "Sasuke & Sakura", serie: "Naruto Shippuden", category: "Naruto", span: "md:col-span-2 md:row-span-2" },
@@ -61,7 +61,7 @@ const pieces: Piece[] = [
   { src: img9.url, title: "Sasuke — Ermite", serie: "Boruto", category: "Naruto", span: "" },
 ];
 
-const filters = ["Tout", "Naruto", "Anime", "Fantasy", "Événementiel"] as const;
+const filters = ["Tout", "Naruto", "Boruto", "Anime", "Fantasy", "Événementiel"] as const;
 
 const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
   const reduceMotion = useReducedMotion();
@@ -100,20 +100,20 @@ const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
       {!embedded && <Header />}
 
       {/* Hero */}
-      <section className={`relative ${embedded ? "pt-10" : "pt-24"} pb-6 overflow-hidden`}>
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent pointer-events-none" />
-        <div className="container mx-auto px-4 text-center relative">
+      <section className={`gallery-intro relative ${embedded ? "pt-10" : "pt-24"} overflow-hidden`}>
+        <div className="gallery-heading mx-auto max-w-[1600px] px-4 md:px-5 relative">
+          <div>
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto h-px w-24 bg-gold-gradient mb-4 origin-center"
+            className="h-px w-24 bg-gold-gradient mb-4 origin-left"
           />
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xs md:text-sm tracking-[0.4em] text-gold uppercase font-body mb-4"
+            className="text-xs text-gold uppercase font-body mb-3"
           >
             Portfolio KAHASOO
           </motion.p>
@@ -121,26 +121,29 @@ const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+            className="gallery-title font-display font-medium"
           >
-            <span className="text-lilac-gradient">Créations</span> KAHASOO
+            <span className="italic">Créations</span><br />KAHASOO
           </motion.h1>
+          </div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.8 }}
-            className="mt-3 max-w-2xl mx-auto text-foreground/70 font-body leading-relaxed"
+            className="gallery-description text-foreground/70 font-body"
           >
             Chaque pièce est confectionnée à la main en France — matières nobles, coupes précises,
             finitions couture. Une sélection de costumes livrés à mes clients cosplayeurs.
           </motion.p>
 
-          {/* Filters */}
+        </div>
+        <div className="mx-auto max-w-[1600px] px-4 md:px-5">
+           {/* Filters */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="mt-5 flex flex-wrap justify-center gap-2"
+            className="gallery-filters flex flex-wrap items-center gap-x-2 gap-y-1 border-b border-gallery-gold/40"
           >
             {filters.map((f) => (
                <Button
@@ -148,22 +151,23 @@ const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
                  variant="ghost"
                  aria-pressed={active === f}
                 onClick={() => { setLightbox(null); setActive(f); }}
-                className={`relative px-5 py-2 rounded-full text-xs md:text-sm font-body tracking-wide transition-all ${
+                className={`relative px-3 py-2 rounded-none text-xs md:text-sm font-body transition-all hover:bg-transparent ${
                   active === f
-                    ? "text-background"
-                    : "text-foreground/70 hover:text-foreground border border-border/60"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {active === f && (
                   <motion.span
                     layoutId="filterPill"
-                    className="absolute inset-0 rounded-full bg-foreground"
+                    className="absolute bottom-0 inset-x-3 h-px bg-gallery-gold"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 )}
                 <span className="relative z-10">{f}</span>
                </Button>
             ))}
+             <span className="ml-auto text-xs tabular-nums text-muted-foreground">{String(visible.length).padStart(2, "0")}</span>
           </motion.div>
         </div>
       </section>
@@ -183,7 +187,7 @@ const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
                 variant="ghost"
                 onClick={() => setLightbox(i)}
                 aria-label={`Voir ${p.title}`}
-                className="group relative block h-auto w-full overflow-hidden rounded-md p-0 text-left whitespace-normal focus-visible:ring-inset"
+                className="gallery-piece group relative block h-auto w-full overflow-hidden rounded-sm p-0 text-left whitespace-normal focus-visible:ring-inset"
               >
                 <img
                   src={p.src}
@@ -191,8 +195,9 @@ const Gallery = ({ embedded = false }: { embedded?: boolean }) => {
                   loading={i < 6 ? "eager" : "lazy"}
                   className="block h-auto w-full transition-transform duration-700 motion-safe:group-hover:scale-105"
                 />
-                <span className="pointer-events-none absolute inset-0 rounded-md ring-1 ring-inset ring-border/20 transition-colors group-hover:ring-gallery-gold/70" />
-                <div className="absolute inset-x-0 bottom-0 bg-gallery-caption px-3 pb-3 pt-12 md:px-4 md:pb-4">
+                <span className="pointer-events-none absolute inset-0 rounded-sm ring-1 ring-inset ring-gallery-gold/25 transition-colors group-hover:ring-gallery-gold/70" />
+                <div className="gallery-photo-caption absolute inset-x-0 bottom-0 bg-gallery-caption">
+                  <span className="gallery-signature block h-px bg-gallery-gold/70 mb-2" />
                   <p className="mb-1 text-[10px] uppercase text-gallery-gold">{p.category}</p>
                   <h3 className="font-display text-sm font-semibold leading-snug text-primary-foreground md:text-lg">{p.title}</h3>
                   <p className="mt-0.5 hidden text-xs font-body text-primary-foreground/75 sm:block">{p.serie}</p>
