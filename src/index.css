@@ -37,6 +37,9 @@
     --radius: 0.5rem;
     --gallery-gold: 42 55% 65%;
     --gallery-caption: linear-gradient(to top, hsl(var(--foreground) / 0.9), hsl(var(--foreground) / 0));
+    --gallery-phi: 1.61803398875;
+    --gallery-unit: 12px;
+    --gallery-space: calc(var(--gallery-unit) * var(--gallery-phi));
 
     --lilac: 280 60% 93%;
     --lilac-foreground: 0 0% 8%;
@@ -167,4 +170,22 @@
 
 @layer utilities {
   .bg-gallery-caption { background: var(--gallery-caption); }
+}
+
+/* Golden proportions frame the editorial layout, not the original photographs. */
+.gallery-intro { padding-bottom: var(--gallery-space); }
+.gallery-heading { display: grid; gap: var(--gallery-space); align-items: end; }
+.gallery-title { font-size: 32px; line-height: 1.1; letter-spacing: 0; }
+.gallery-description { max-width: 38ch; font-size: 14px; line-height: var(--gallery-phi); }
+.gallery-filters { margin-top: calc(var(--gallery-space) * var(--gallery-phi)); padding-bottom: 8px; }
+.gallery-photo-caption { padding: calc(var(--gallery-space) * var(--gallery-phi) * var(--gallery-phi)) var(--gallery-unit) var(--gallery-unit); }
+.gallery-signature { width: calc(100% / var(--gallery-phi)); max-width: 62px; transform-origin: left; transition: transform 600ms ease; }
+.gallery-piece:hover .gallery-signature { transform: scaleX(var(--gallery-phi)); }
+@media (min-width: 768px) {
+  .gallery-heading { grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr); }
+  .gallery-title { font-size: calc(32px * var(--gallery-phi)); }
+  .gallery-photo-caption { padding-inline: var(--gallery-space); padding-bottom: var(--gallery-space); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-signature { transition: none; }
 }
